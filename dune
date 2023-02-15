@@ -6,8 +6,3 @@
   (flags --no-sourcemap))
  (libraries)
  (preprocess no_preprocessing))
-
-(rule
- (target libpcre.js)
- (action
-  (run ./build_libpcre.sh %{workspace_root})))
