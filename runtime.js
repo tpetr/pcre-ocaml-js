@@ -1,4 +1,5 @@
-// global pcre_wasm
+//Provides: pcre
+var pcre = globalThis.pcre_wasm;
 
 const NULL = 0;
 
@@ -274,11 +275,6 @@ function pcre_study_stub(v_rex, v_jit_compile) {
 		v_rex.studied = 1
 	}
 	return v_rex
-}
-
-//Provides: numcores
-function numcores() {
-	return 1
 }
 
 //Provides: pcre_set_imp_match_limit_stub_bc
