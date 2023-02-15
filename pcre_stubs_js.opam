@@ -1,9 +1,9 @@
 opam-version: "2.0"
 maintainer: "Tom Petr"
 authors: ["Tom Petr"]
-homepage: "https://github.com/tpetr/pcre-ocaml-js"
-bug-reports: "https://github.com/tpetr/pcre-ocaml-js/issues"
-dev-repo: "git+https://github.com/tpetr/pcre-ocaml-js.git"
+homepage: "https://github.com/tpetr/pcre_stubs_js"
+bug-reports: "https://github.com/tpetr/pcre_stubs_js/issues"
+dev-repo: "git+https://github.com/tpetr/pcre_stubs_js.git"
 license: "MIT"
 build: [
   ["dune" "build" "-p" name "-j" jobs]
@@ -11,6 +11,7 @@ build: [
 depends: [
   "ocaml" {>= "4.04.2"}
   "dune" {>= "2.0.0"}
+  "pcre"
 ]
 synopsis: "Javascript stubs for the pcre library"
 description: "
