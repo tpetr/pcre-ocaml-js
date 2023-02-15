@@ -1,0 +1,18 @@
+opam-version: "2.0"
+maintainer: "Tom Petr"
+authors: ["Tom Petr"]
+homepage: "https://github.com/tpetr/pcre-ocaml-js"
+bug-reports: "https://github.com/tpetr/pcre-ocaml-js/issues"
+dev-repo: "git+https://github.com/tpetr/pcre-ocaml-js.git"
+license: "MIT"
+build: [
+  ["dune" "build" "-p" name "-j" jobs]
+]
+depends: [
+  "ocaml" {>= "4.04.2"}
+  "dune" {>= "2.0.0"}
+]
+synopsis: "Javascript stubs for the pcre library"
+description: "
+Implements pcre-ocaml with the help of a wasm build of libpcre
+"
