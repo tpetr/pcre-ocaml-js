@@ -10,4 +10,4 @@
 (rule
  (target libpcre.js)
  (action
-  (run ./build_libpcre.sh)))
+  (run ./build_libpcre.sh %{workspace_root})))
