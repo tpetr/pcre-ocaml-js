@@ -1,7 +1,6 @@
 #!/bin/bash -eu
 
-PCRE_VERSION="8.45"
-
+export PCRE_VERSION="8.45"
 export EM_CACHE="$(pwd)/.emscripten-cache"
 
 curl -L "https://sourceforge.net/projects/pcre/files/pcre/${PCRE_VERSION}/pcre-${PCRE_VERSION}.tar.gz/download" | tar xvz
