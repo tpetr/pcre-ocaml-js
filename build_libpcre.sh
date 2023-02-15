@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 PCRE_VERSION="8.45"
 
 export EM_CACHE="$(pwd)/.emscripten-cache"
 
-test -d pcre-${PCRE_VERSION} || curl -L "https://sourceforge.net/projects/pcre/files/pcre/${PCRE_VERSION}/pcre-${PCRE_VERSION}.tar.gz/download" | tar xvz
+curl -L "https://sourceforge.net/projects/pcre/files/pcre/${PCRE_VERSION}/pcre-${PCRE_VERSION}.tar.gz/download" | tar xvz
 
 pushd pcre-${PCRE_VERSION}
 
