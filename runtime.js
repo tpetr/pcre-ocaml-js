@@ -1,6 +1,3 @@
-//Provides: pcre
-var pcre = globalThis.pcre_wasm;
-
 const NULL = 0;
 
 const PCRE_CONFIG_UTF8                    = 0

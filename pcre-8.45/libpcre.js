@@ -1,10 +1,10 @@
 
-var Module = (() => {
+var PCRE = (() => {
   var _scriptDir = typeof document !== 'undefined' && document.currentScript ? document.currentScript.src : undefined;
   if (typeof __filename !== 'undefined') _scriptDir = _scriptDir || __filename;
   return (
-function(Module) {
-  Module = Module || {};
+function(PCRE) {
+  PCRE = PCRE || {};
 
 
 
@@ -21,7 +21,7 @@ function(Module) {
 // after the generated code, you will need to define   var Module = {};
 // before the code. Then that object will be used in the code, and you
 // can continue to use Module afterwards as well.
-var Module = typeof Module != 'undefined' ? Module : {};
+var Module = typeof PCRE != 'undefined' ? PCRE : {};
 
 // See https://caniuse.com/mdn-javascript_builtins_object_assign
 
@@ -1179,13 +1179,13 @@ run();
 
 
 
-  return Module.ready
+  return PCRE.ready
 }
 );
 })();
 if (typeof exports === 'object' && typeof module === 'object')
-  module.exports = Module;
+  module.exports = PCRE;
 else if (typeof define === 'function' && define['amd'])
-  define([], function() { return Module; });
+  define([], function() { return PCRE; });
 else if (typeof exports === 'object')
-  exports["Module"] = Module;
+  exports["PCRE"] = PCRE;

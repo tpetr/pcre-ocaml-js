@@ -3,10 +3,6 @@
 export PCRE_VERSION="8.45"
 export EM_CACHE="$(pwd)/.emscripten-cache"
 
-cd ${1:-$(pwd)}
-
-echo "pwd: $(pwd)"
-
 pushd pcre-${PCRE_VERSION}
 
 emconfigure ./configure --enable-utf8
@@ -16,4 +12,5 @@ V=1 emmake make -f Makefile.wasm libpcre.js
 
 popd
 
-cp pcre-${PCRE_VERSION}/libpcre.{js,wasm} ./
+cat prefix.js pcre-${PCRE_VERSION}/libpcre.js > libpcre.js
+cp pcre-${PCRE_VERSION}/libpcre.wasm ./

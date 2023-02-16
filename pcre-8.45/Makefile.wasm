@@ -1571,7 +1571,7 @@ libpcre.la: $(libpcre_la_OBJECTS) $(libpcre_la_DEPENDENCIES) $(EXTRA_libpcre_la_
 	$(AM_V_CCLD)$(libpcre_la_LINK) $(am_libpcre_la_rpath) $(libpcre_la_OBJECTS) $(libpcre_la_LIBADD) $(LIBS)
 
 libpcre.js: $(libpcre_la_OBJECTS) $(libpcre_la_DEPENDENCIES) $(EXTRA_libpcre_la_DEPENDENCIES)
-	$(AM_V_CCLD)$(libpcre_la_LINK) $(am_libpcre_la_rpath) $(libpcre_la_OBJECTS) $(libpcre_la_LIBADD) $(LIBS) -sEXPORTED_RUNTIME_METHODS=AsciiToString,stringToAscii,stringToUTF8,getValue,setValue -sEXPORTED_FUNCTIONS=_malloc,_free,_pcre_config,_pcre_compile,_pcre_fullinfo,_pcre_study,_pcre_exec -sMODULARIZE
+	$(AM_V_CCLD)$(libpcre_la_LINK) $(am_libpcre_la_rpath) $(libpcre_la_OBJECTS) $(libpcre_la_LIBADD) $(LIBS) -sEXPORTED_RUNTIME_METHODS=AsciiToString,stringToAscii,stringToUTF8,getValue,setValue -sEXPORTED_FUNCTIONS=_malloc,_free,_pcre_config,_pcre_compile,_pcre_fullinfo,_pcre_study,_pcre_exec -sMODULARIZE -sINVOKE_RUN=0 -sEXPORT_NAME=PCRE
 
 libpcre16.la: $(libpcre16_la_OBJECTS) $(libpcre16_la_DEPENDENCIES) $(EXTRA_libpcre16_la_DEPENDENCIES)
 	$(AM_V_CCLD)$(libpcre16_la_LINK) $(am_libpcre16_la_rpath) $(libpcre16_la_OBJECTS) $(libpcre16_la_LIBADD) $(LIBS)
