@@ -12,5 +12,4 @@ V=1 emmake make -f Makefile.wasm libpcre.js
 
 popd
 
-cat prefix.js pcre-${PCRE_VERSION}/libpcre.js > libpcre.js
-cp pcre-${PCRE_VERSION}/libpcre.wasm ./
+cp pcre-${PCRE_VERSION}/libpcre.{js,wasm} ./

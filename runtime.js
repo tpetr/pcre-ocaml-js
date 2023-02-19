@@ -1,6 +1,3 @@
-//Provides: pcre
-var pcre;
-
 const NULL = 0;
 
 const PCRE_CONFIG_UTF8                    = 0
@@ -147,31 +144,28 @@ function pcre_ocaml_init() {
 }
 
 //Provides: pcre_version_stub const
-//Requires: pcre
 function pcre_version_stub() {
-	const ptr = pcre._pcre_version()
-	const value = pcre.AsciiToString()
-	pcre._free(ptr)
+	const ptr = PCRE._pcre_version()
+	const value = PCRE.AsciiToString()
+	PCRE._free(ptr)
 	return value
 }
 
 //Provides: pcre_config_get_int
-//Requires: pcre
 function pcre_config_get_int(what) {
-	const ptr = pcre._malloc(4)
-	pcre._pcre_config(what, ptr)
-	const value = pcre.HEAP8[ptr]
-	pcre._free(ptr)
+	const ptr = PCRE._malloc(4)
+	PCRE._pcre_config(what, ptr)
+	const value = PCRE.HEAP8[ptr]
+	PCRE._free(ptr)
 	return value
 }
 
 //Provides: pcre_config_get_long
-//Requires: pcre
 function pcre_config_get_long(what) {
-	const ptr = pcre._malloc(4)
-	pcre._pcre_config(what, ptr)
-	const value = pcre.HEAP16[ptr]
-	pcre._free(ptr)
+	const ptr = PCRE._malloc(4)
+	PCRE._pcre_config(what, ptr)
+	const value = PCRE.HEAP16[ptr]
+	PCRE._free(ptr)
 	return value
 }
 
@@ -212,14 +206,13 @@ function pcre_config_stackrecurse_stub() {
 }
 
 //Provides: pcre_compile_stub_bc
-//Requires: pcre
 function pcre_compile_stub_bc(v_opt, v_tables, v_pat) {
   //size_t regexp_size, ocaml_regexp_size = sizeof(struct pcre_ocaml_regexp);
-  var regexp_info_ptr = pcre._malloc(16);
-  var error_ptr = pcre._malloc(4);
-  var error_ptr_ptr = pcre._malloc(4);
-  pcre.setValue(error_ptr_ptr, error_ptr, 'i32')
-  var error_ofs_ptr = pcre._malloc(4);  /* offset in the pattern at which error occurred */
+  var regexp_info_ptr = PCRE._malloc(16);
+  var error_ptr = PCRE._malloc(4);
+  var error_ptr_ptr = PCRE._malloc(4);
+  PCRE.setValue(error_ptr_ptr, error_ptr, 'i32')
+  var error_ofs_ptr = PCRE._malloc(4);  /* offset in the pattern at which error occurred */
 
   /* If v_tables = [None], then pointer to tables is NULL, otherwise
      set it to the appropriate value */
@@ -228,21 +221,21 @@ function pcre_compile_stub_bc(v_opt, v_tables, v_pat) {
 	throw new Error("need to do something with v_tables");
   }
 
-  const pattern_ptr = pcre._malloc(v_pat.length*4);  // TODO
+  const pattern_ptr = PCRE._malloc(v_pat.length*4);  // TODO
   if (v_opt & 0x800) {  // TODO: const
-	pcre.stringToUTF8(v_pat, pattern_ptr);
+	PCRE.stringToUTF8(v_pat, pattern_ptr);
   } else {
-	pcre.stringToAscii(v_pat, pattern_ptr);
+	PCRE.stringToAscii(v_pat, pattern_ptr);
   }
   
   /* Compiles the pattern */
-  const regexp_ptr = pcre._pcre_compile(pattern_ptr, v_opt, error_ptr_ptr, error_ofs_ptr, 0);
+  const regexp_ptr = PCRE._pcre_compile(pattern_ptr, v_opt, error_ptr_ptr, error_ofs_ptr, 0);
 
   /* Raises appropriate exception with [BadPattern] if the pattern
      could not be compiled */
 	if (regexp_ptr == NULL) {
-		const errorString = pcre.AsciiToString(pcre.getValue(error_ptr_ptr, 'i32'))
-		throw new Error(errorString + " at offset " + pcre.HEAP8[error_ofs_ptr])
+		const errorString = PCRE.AsciiToString(PCRE.getValue(error_ptr_ptr, 'i32'))
+		throw new Error(errorString + " at offset " + PCRE.HEAP8[error_ofs_ptr])
 	}
   
 
@@ -251,7 +244,7 @@ function pcre_compile_stub_bc(v_opt, v_tables, v_pat) {
      have to decide on a size.  Tests with some simple patterns indicate a
      roughly 50% increase in size when studying without JIT.  A factor of
      two times hence seems like a reasonable bound to use here. */
-  const fullinfo_result = pcre._pcre_fullinfo(regexp_ptr, 0, PCRE_INFO_SIZE, regexp_info_ptr);
+  const fullinfo_result = PCRE._pcre_fullinfo(regexp_ptr, 0, PCRE_INFO_SIZE, regexp_info_ptr);
 
 
   return {
@@ -262,14 +255,13 @@ function pcre_compile_stub_bc(v_opt, v_tables, v_pat) {
 }
 
 //Provides: pcre_study_stub
-//Requires: pcre
 function pcre_study_stub(v_rex, v_jit_compile) {
 	if (!v_rex.studied) {
 		const flags = v_jit_compile ? PCRE_STUDY_JIT_COMPILE : 0
-		const error_ptr = pcre._malloc(1024)
-		const extra_ptr = pcre._pcre_study(v_rex.regexp_ptr, flags, error_ptr)
-		if (pcre.HEAP8[error_ptr] != NULL) {
-			throw new Error(`invalid argument: ${pcre.AsciiToString(pcre.HEAP8[error_ptr])}`)
+		const error_ptr = PCRE._malloc(1024)
+		const extra_ptr = PCRE._pcre_study(v_rex.regexp_ptr, flags, error_ptr)
+		if (PCRE.HEAP8[error_ptr] != NULL) {
+			throw new Error(`invalid argument: ${PCRE.AsciiToString(PCRE.HEAP8[error_ptr])}`)
 		}
 		v_rex.extra_ptr = extra_ptr
 		v_rex.studied = 1
@@ -278,40 +270,37 @@ function pcre_study_stub(v_rex, v_jit_compile) {
 }
 
 //Provides: pcre_set_imp_match_limit_stub_bc
-//Requires: pcre
 function pcre_set_imp_match_limit_stub_bc(v_rex, v_lim) {
 	if (v_rex.extra_ptr == NULL) {
-		v_rex.extra_ptr = pcre._malloc(struct_sizeof(STRUCT_PCRE_EXTRA))
-		pcre.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, PCRE_EXTRA_MATCH_LIMIT, 'i32')
+		v_rex.extra_ptr = PCRE._malloc(struct_sizeof(STRUCT_PCRE_EXTRA))
+		PCRE.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, PCRE_EXTRA_MATCH_LIMIT, 'i32')
 	} else {
-		pcre.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, pcre.getValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, 'i32') | PCRE_EXTRA_MATCH_LIMIT, 'i32')
+		PCRE.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, PCRE.getValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, 'i32') | PCRE_EXTRA_MATCH_LIMIT, 'i32')
 	}
-	pcre.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.match_limit, v_lim, 'i32')
+	PCRE.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.match_limit, v_lim, 'i32')
 	return v_rex
 }
 
 //Provides: pcre_set_imp_match_limit_recursion_stub_bc
-//Requires: pcre
 function pcre_set_imp_match_limit_recursion_stub_bc(v_rex, v_lim) {
 	if (v_rex.extra_ptr == NULL) {
-		v_rex.extra_ptr = pcre._malloc(struct_sizeof(STRUCT_PCRE_EXTRA))
-		pcre.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, PCRE_EXTRA_MATCH_LIMIT_RECURSION, 'i32')
+		v_rex.extra_ptr = PCRE._malloc(struct_sizeof(STRUCT_PCRE_EXTRA))
+		PCRE.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, PCRE_EXTRA_MATCH_LIMIT_RECURSION, 'i32')
 	} else {
-		pcre.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, pcre.getValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, 'i32') | PCRE_EXTRA_MATCH_LIMIT_RECURSION, 'i32')
+		PCRE.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, PCRE.getValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.flags, 'i32') | PCRE_EXTRA_MATCH_LIMIT_RECURSION, 'i32')
 	}
-	pcre.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.match_limit_recursion, v_lim, 'i32')
+	PCRE.setValue(v_rex.extra_ptr + STRUCT_PCRE_EXTRA.match_limit_recursion, v_lim, 'i32')
 	return v_rex
 }
 
 //Provides: pcre_capturecount_stub_bc
-//Requires: pcre
 function pcre_capturecount_stub_bc(v_rex) {
-	const options_ptr = pcre._malloc(4)
-	const ret = pcre._pcre_fullinfo(v_rex.regexp_ptr, v_rex.extra_ptr, PCRE_INFO_CAPTURECOUNT, options_ptr)
+	const options_ptr = PCRE._malloc(4)
+	const ret = PCRE._pcre_fullinfo(v_rex.regexp_ptr, v_rex.extra_ptr, PCRE_INFO_CAPTURECOUNT, options_ptr)
 	if (ret != 0) {
 		throw new Error("shit")  // TODO
 	}
-	return pcre.getValue(options_ptr, 'i32')
+	return PCRE.getValue(options_ptr, 'i32')
 }
 
 //Provides: handle_exec_error
@@ -327,7 +316,7 @@ function handle_exec_error(loc, ret) {
 }
 
 //Provides: pcre_exec_stub_bc
-//Requires: pcre, handle_exec_error
+//Requires: handle_exec_error
 function pcre_exec_stub_bc(v_opt, v_rex, v_pos, v_subj_start, v_subj, v_ovec, v_maybe_cof, v_workspace) {
 	var ret;
 	const is_dfa = !!v_workspace;
@@ -335,8 +324,8 @@ function pcre_exec_stub_bc(v_opt, v_rex, v_pos, v_subj_start, v_subj, v_ovec, v_
 	var len = v_subj.length
 	var subj_start = v_subj_start
 
-	const v_subj_ptr = pcre._malloc(v_subj.length)
-	pcre.stringToAscii(v_subj, v_subj_ptr)
+	const v_subj_ptr = PCRE._malloc(v_subj.length)
+	PCRE.stringToAscii(v_subj, v_subj_ptr)
 
 	var ovec_len = v_ovec.length
 
@@ -355,17 +344,17 @@ function pcre_exec_stub_bc(v_opt, v_rex, v_pos, v_subj_start, v_subj, v_ovec, v_
 	const opt = v_opt;
 
 	if (!v_maybe_cof) {
-		const ovec_ptr = pcre._malloc(ovec_len * 4)
+		const ovec_ptr = PCRE._malloc(ovec_len * 4)
 		if (is_dfa) {
-			ret = pcre._pcre_dfa_exec()
+			ret = PCRE._pcre_dfa_exec()
 		} else {
-			ret = pcre._pcre_exec(v_rex.regexp_ptr, v_rex.extra_ptr, ocaml_subj_ptr, len, pos, opt, ovec_ptr, ovec_len)
+			ret = PCRE._pcre_exec(v_rex.regexp_ptr, v_rex.extra_ptr, ocaml_subj_ptr, len, pos, opt, ovec_ptr, ovec_len)
 		}
 		if (ret < 0) {
 			handle_exec_error("pcre_exec_stub", ret)
 		} else {
 			for (var i=0; i<ovec_len; i++) {
-				v_ovec[i] = pcre.getValue(ovec_ptr + (i*4))
+				v_ovec[i] = PCRE.getValue(ovec_ptr + (i*4))
 			}
 		}
 	} else {
