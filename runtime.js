@@ -1,14 +1,6 @@
 //Provides: pcre
 var pcre;
 
-//Provides: init_pcre
-//Requires: PCRE, pcre
-function init_pcre() {
-	return PCRE().then((instance) => {
-		pcre = instance;
-	});
-}
-
 const NULL = 0;
 
 const PCRE_CONFIG_UTF8                    = 0
