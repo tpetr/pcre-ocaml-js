@@ -1,100 +1,36 @@
+//Provides: NULL
 const NULL = 0;
 
+//Provides: PCRE_CONFIG_UTF8 const
 const PCRE_CONFIG_UTF8                    = 0
+//Provides: PCRE_CONFIG_NEWLINE const
 const PCRE_CONFIG_NEWLINE                 = 1
+//Provides: PCRE_CONFIG_LINK_SIZE const
 const PCRE_CONFIG_LINK_SIZE               = 2
-const PCRE_CONFIG_POSIX_MALLOC_THRESHOLD  = 3
+
+//Provides: PCRE_CONFIG_MATCH_LIMIT const
 const PCRE_CONFIG_MATCH_LIMIT             = 4
+//Provides: PCRE_CONFIG_STACKRECURSE const
 const PCRE_CONFIG_STACKRECURSE            = 5
-const PCRE_CONFIG_UNICODE_PROPERTIES      = 6
+
+//Provides: PCRE_CONFIG_MATCH_LIMIT_RECURSION const
 const PCRE_CONFIG_MATCH_LIMIT_RECURSION   = 7
-const PCRE_CONFIG_BSR                     = 8
-const PCRE_CONFIG_JIT                     = 9
-const PCRE_CONFIG_UTF16                   = 10
-const PCRE_CONFIG_JITTARGET               = 11
-const PCRE_CONFIG_UTF32                   = 12
-const PCRE_CONFIG_PARENS_LIMIT            = 13
 
+//Provides: PCRE_STUDY_JIT_COMPILE const
 const PCRE_STUDY_JIT_COMPILE                = 0x0001
-const PCRE_STUDY_JIT_PARTIAL_SOFT_COMPILE   = 0x0002
-const PCRE_STUDY_JIT_PARTIAL_HARD_COMPILE   = 0x0004
-const PCRE_STUDY_EXTRA_NEEDED               = 0x0008
 
-const PCRE_EXTRA_STUDY_DATA            = 0x0001
+//Provides: PCRE_EXTRA_MATCH_LIMIT const
 const PCRE_EXTRA_MATCH_LIMIT           = 0x0002
-const PCRE_EXTRA_CALLOUT_DATA          = 0x0004
-const PCRE_EXTRA_TABLES                = 0x0008
+//Provides: PCRE_EXTRA_MATCH_LIMIT_RECURSION const
 const PCRE_EXTRA_MATCH_LIMIT_RECURSION = 0x0010
-const PCRE_EXTRA_MARK                  = 0x0020
-const PCRE_EXTRA_EXECUTABLE_JIT        = 0x0040
 
-/*
-#define PCRE_INFO_OPTIONS            0*/
+//Provides: PCRE_INFO_SIZE const
 const PCRE_INFO_SIZE               = 1
+//Provides: PCRE_INFO_CAPTURECOUNT const
 const PCRE_INFO_CAPTURECOUNT       = 2
-/*#define PCRE_INFO_BACKREFMAX         3
-#define PCRE_INFO_FIRSTBYTE          4
-#define PCRE_INFO_FIRSTCHAR          4  
-#define PCRE_INFO_FIRSTTABLE         5
-#define PCRE_INFO_LASTLITERAL        6
-#define PCRE_INFO_NAMEENTRYSIZE      7
-#define PCRE_INFO_NAMECOUNT          8
-#define PCRE_INFO_NAMETABLE          9
-#define PCRE_INFO_STUDYSIZE         10
-#define PCRE_INFO_DEFAULT_TABLES    11
-#define PCRE_INFO_OKPARTIAL         12
-#define PCRE_INFO_JCHANGED          13
-#define PCRE_INFO_HASCRORLF         14
-#define PCRE_INFO_MINLENGTH         15
-#define PCRE_INFO_JIT               16
-#define PCRE_INFO_JITSIZE           17
-#define PCRE_INFO_MAXLOOKBEHIND     18
-#define PCRE_INFO_FIRSTCHARACTER    19
-#define PCRE_INFO_FIRSTCHARACTERFLAGS 20
-#define PCRE_INFO_REQUIREDCHAR      21
-#define PCRE_INFO_REQUIREDCHARFLAGS 22
-#define PCRE_INFO_MATCHLIMIT        23
-#define PCRE_INFO_RECURSIONLIMIT    24
-#define PCRE_INFO_MATCH_EMPTY       25
-*/
+
+//Provides: PCRE_ERROR_NOMATCH const
 const PCRE_ERROR_NOMATCH          = (-1)
-// #define PCRE_ERROR_NULL             (-2)
-// #define PCRE_ERROR_BADOPTION        (-3)
-// #define PCRE_ERROR_BADMAGIC         (-4)
-// #define PCRE_ERROR_UNKNOWN_OPCODE   (-5)
-// #define PCRE_ERROR_UNKNOWN_NODE     (-5)  /* For backward compatibility */
-// #define PCRE_ERROR_NOMEMORY         (-6)
-// #define PCRE_ERROR_NOSUBSTRING      (-7)
-// #define PCRE_ERROR_MATCHLIMIT       (-8)
-// #define PCRE_ERROR_CALLOUT          (-9)  /* Never used by PCRE itself */
-// #define PCRE_ERROR_BADUTF8         (-10)  /* Same for 8/16/32 */
-// #define PCRE_ERROR_BADUTF16        (-10)  /* Same for 8/16/32 */
-// #define PCRE_ERROR_BADUTF32        (-10)  /* Same for 8/16/32 */
-// #define PCRE_ERROR_BADUTF8_OFFSET  (-11)  /* Same for 8/16 */
-// #define PCRE_ERROR_BADUTF16_OFFSET (-11)  /* Same for 8/16 */
-// #define PCRE_ERROR_PARTIAL         (-12)
-// #define PCRE_ERROR_BADPARTIAL      (-13)
-// #define PCRE_ERROR_INTERNAL        (-14)
-// #define PCRE_ERROR_BADCOUNT        (-15)
-// #define PCRE_ERROR_DFA_UITEM       (-16)
-// #define PCRE_ERROR_DFA_UCOND       (-17)
-// #define PCRE_ERROR_DFA_UMLIMIT     (-18)
-// #define PCRE_ERROR_DFA_WSSIZE      (-19)
-// #define PCRE_ERROR_DFA_RECURSE     (-20)
-// #define PCRE_ERROR_RECURSIONLIMIT  (-21)
-// #define PCRE_ERROR_NULLWSLIMIT     (-22)  /* No longer actually used */
-// #define PCRE_ERROR_BADNEWLINE      (-23)
-// #define PCRE_ERROR_BADOFFSET       (-24)
-// #define PCRE_ERROR_SHORTUTF8       (-25)
-// #define PCRE_ERROR_SHORTUTF16      (-25)  /* Same for 8/16 */
-// #define PCRE_ERROR_RECURSELOOP     (-26)
-// #define PCRE_ERROR_JIT_STACKLIMIT  (-27)
-// #define PCRE_ERROR_BADMODE         (-28)
-// #define PCRE_ERROR_BADENDIANNESS   (-29)
-// #define PCRE_ERROR_DFA_BADRESTART  (-30)
-// #define PCRE_ERROR_JIT_BADOPTION   (-31)
-// #define PCRE_ERROR_BADLENGTH       (-32)
-// #define PCRE_ERROR_UNSET           (-33)
 
 const STRUCT_PCRE_EXTRA = {
 	flags: 0,
@@ -170,42 +106,43 @@ function pcre_config_get_long(what) {
 }
 
 //Provides: pcre_config_utf8_stub const
-//Requires: pcre_config_get_int
+//Requires: pcre_config_get_int, PCRE_CONFIG_UTF8
 function pcre_config_utf8_stub() {
 	return pcre_config_get_int(PCRE_CONFIG_UTF8)
 }
 
 //Provides: pcre_config_newline_stub
-//Requires: pcre_config_get_int
+//Requires: pcre_config_get_int, PCRE_CONFIG_NEWLINE
 function pcre_config_newline_stub() {
 	return pcre_config_get_int(PCRE_CONFIG_NEWLINE)
 }
 
 //Provides: pcre_config_link_size_stub_bc
-//Requires: pcre_config_get_int
+//Requires: pcre_config_get_int, PCRE_CONFIG_LINK_SIZE
 function pcre_config_link_size_stub_bc() {
 	return pcre_config_get_int(PCRE_CONFIG_LINK_SIZE)
 }
 
 //Provides: pcre_config_match_limit_stub_bc
-//Requires: pcre_config_get_long
+//Requires: pcre_config_get_long, PCRE_CONFIG_MATCH_LIMIT
 function pcre_config_match_limit_stub_bc() {
 	return pcre_config_get_long(PCRE_CONFIG_MATCH_LIMIT)
 }
 
 //Provides: pcre_config_match_limit_recursion_stub_bc
-//Requires: pcre_config_get_long
+//Requires: pcre_config_get_long, PCRE_CONFIG_MATCH_LIMIT_RECURSION
 function pcre_config_match_limit_recursion_stub_bc() {
 	return pcre_config_get_long(PCRE_CONFIG_MATCH_LIMIT_RECURSION);
 }
 
 //Provides: pcre_config_stackrecurse_stub
-//Requires: pcre_config_get_int
+//Requires: pcre_config_get_int, PCRE_CONFIG_STACKRECURSE
 function pcre_config_stackrecurse_stub() {
 	return pcre_config_get_int(PCRE_CONFIG_STACKRECURSE)
 }
 
 //Provides: pcre_compile_stub_bc
+//Requires: PCRE_INFO_SIZE, NULL
 function pcre_compile_stub_bc(v_opt, v_tables, v_pat) {
   //size_t regexp_size, ocaml_regexp_size = sizeof(struct pcre_ocaml_regexp);
   var regexp_info_ptr = PCRE._malloc(16);
@@ -255,6 +192,7 @@ function pcre_compile_stub_bc(v_opt, v_tables, v_pat) {
 }
 
 //Provides: pcre_study_stub
+//Requires: PCRE_STUDY_JIT_COMPILE, NULL
 function pcre_study_stub(v_rex, v_jit_compile) {
 	if (!v_rex.studied) {
 		const flags = v_jit_compile ? PCRE_STUDY_JIT_COMPILE : 0
@@ -270,6 +208,7 @@ function pcre_study_stub(v_rex, v_jit_compile) {
 }
 
 //Provides: pcre_set_imp_match_limit_stub_bc
+//Requires: PCRE_EXTRA_MATCH_LIMIT, NULL
 function pcre_set_imp_match_limit_stub_bc(v_rex, v_lim) {
 	if (v_rex.extra_ptr == NULL) {
 		v_rex.extra_ptr = PCRE._malloc(struct_sizeof(STRUCT_PCRE_EXTRA))
@@ -282,6 +221,7 @@ function pcre_set_imp_match_limit_stub_bc(v_rex, v_lim) {
 }
 
 //Provides: pcre_set_imp_match_limit_recursion_stub_bc
+//Requires; PCRE_EXTRA_MATCH_LIMIT_RECURSION, NULL
 function pcre_set_imp_match_limit_recursion_stub_bc(v_rex, v_lim) {
 	if (v_rex.extra_ptr == NULL) {
 		v_rex.extra_ptr = PCRE._malloc(struct_sizeof(STRUCT_PCRE_EXTRA))
@@ -294,6 +234,7 @@ function pcre_set_imp_match_limit_recursion_stub_bc(v_rex, v_lim) {
 }
 
 //Provides: pcre_capturecount_stub_bc
+//Requires: PCRE_INFO_CAPTURECOUNT
 function pcre_capturecount_stub_bc(v_rex) {
 	const options_ptr = PCRE._malloc(4)
 	const ret = PCRE._pcre_fullinfo(v_rex.regexp_ptr, v_rex.extra_ptr, PCRE_INFO_CAPTURECOUNT, options_ptr)
@@ -304,7 +245,7 @@ function pcre_capturecount_stub_bc(v_rex) {
 }
 
 //Provides: handle_exec_error
-//Requires: caml_raise_not_found
+//Requires: caml_raise_not_found, PCRE_ERROR_NOMATCH
 function handle_exec_error(loc, ret) {
 	switch (ret) {
 		case PCRE_ERROR_NOMATCH:
