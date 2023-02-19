@@ -1078,6 +1078,11 @@ var _pcre_study = Module["_pcre_study"] = function() {
 };
 
 /** @type {function(...*):?} */
+var _pcre_version = Module["_pcre_version"] = function() {
+  return (_pcre_version = Module["_pcre_version"] = Module["asm"]["pcre_version"]).apply(null, arguments);
+};
+
+/** @type {function(...*):?} */
 var ___errno_location = Module["___errno_location"] = function() {
   return (___errno_location = Module["___errno_location"] = Module["asm"]["__errno_location"]).apply(null, arguments);
 };
