@@ -1,5 +1,10 @@
 //Provides: pcre_wasm_module const
-const pcre_wasm_module = globalThis.pcre_wasm_module || throw new Error("PCRE WebAssembly module needs to be loaded before importing this module")
+const pcre_wasm_module = (() => {
+	if (!globalThis.pcre_wasm_module) {
+		throw new Error("libpcre.js must be imported before using this module");
+	}
+	return globalThis.pcre_wasm_module;
+})();
 
 //Provides: NULL const
 const NULL = 0;
