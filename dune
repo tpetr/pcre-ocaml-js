@@ -2,7 +2,7 @@
  (name pcre_stubs_js)
  (public_name pcre_stubs_js)
  (js_of_ocaml
-  (javascript_files ./libpcre.js ./runtime.js)
+  (javascript_files ./runtime.js)
   (flags --no-sourcemap))
  (libraries)
  (preprocess no_preprocessing))
